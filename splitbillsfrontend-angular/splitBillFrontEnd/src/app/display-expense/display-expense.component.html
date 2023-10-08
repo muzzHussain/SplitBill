@@ -1,0 +1,90 @@
+<div class="container col-sm-6">
+  <div
+    *ngIf="alert"
+    [class]="alertClass + ' alert-dismissible fade show'"
+    role="alert"
+  >
+    <strong
+      >{{ alertClass.includes("success") ? "Success!" : "Oops!" }}
+    </strong>
+    {{ successMessage || errorMessage }}.
+    <button
+      (click)="closeAlert()"
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="welcome-msg">
+        <h3>
+          Total Expense
+          <span class="badge bg-warning">Rs.{{ totalExpense }}</span>
+        </h3>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="groupBtns">
+        <a
+          routerLink="/group/add/expense/{{ groupId }}"
+          class="btn btn-outline-success"
+          >Add Expense</a
+        >
+        <a
+          id="back"
+          routerLink="/group/members/{{ groupId }}"
+          class="btn btn-dark"
+          >Back</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="line"></div>
+  <table class="table my-3">
+    <thead>
+      <th>Expense Title</th>
+      <th>Expense Amount</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of detail">
+        <th>
+          <a
+            routerLink="/group/contribution/{{ item.expenseId }}"
+            class="text-center"
+          >
+            <td>{{ item.expenseTitle | capitalizeFirstLetter }}</td>
+          </a>
+        </th>
+        <td>Rs. {{ item.totalExpenseAmount }}</td>
+        <th class="btns">
+          <div class="actions-btn">
+            <button
+              type="button"
+              class="btn btn-outline-danger delBtn"
+              (click)="onDelete(item.expenseId)"
+            >
+              Delete
+            </button>
+            &nbsp;
+            <a
+              type="button"
+              class="btn btn-outline-info delBtn"
+              routerLink="/group/edit/expense/{{ item.expenseId }}"
+            >
+              Update
+            </a>
+          </div>
+        </th>
+        <!-- TODO: Add edit and delete functionality -->
+      </tr>
+    </tbody>
+  </table>
+  <p class="msg text-body-secondary" *ngIf="detail.length === 0">
+    No Expense Found!
+  </p>
+</div>

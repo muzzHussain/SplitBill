@@ -1,0 +1,155 @@
+<div class="container col-sm-6" *ngIf="delUser">
+  <div
+    *ngIf="alert"
+    [class]="alertClass + ' alert-dismissible fade show'"
+    role="alert"
+  >
+    <strong
+      >{{ alertClass.includes("success") ? "Success!" : "Oops!" }}
+    </strong>
+    {{ successMessage || errorMessage }}.
+    <button
+      (click)="closeAlert()"
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="welcome-msg">
+        <h1>
+          Welcome
+          <h3>
+            to the
+
+            <span class="fw-bold">{{ name | capitalizeFirstLetter }}</span>
+          </h3>
+        </h1>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="groupBtns">
+        <!-- (click)="goToAddMembers()" -->
+        <a
+          class="btn btn-outline-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop2"
+          >Add Member</a
+        >
+        <a routerLink="/group/expense/{{ id }}" class="btn btn-outline-success"
+          >View Expense</a
+        >
+        <a routerLink="/dashboard" class="btn btn-dark">Back</a>
+      </div>
+    </div>
+  </div>
+  <div class="line"></div>
+  <table class="table my-3">
+    <thead></thead>
+    <tbody>
+      <tr *ngFor="let member of members">
+        <div class="group-title">
+          <td class="bdelright">{{ member.name | capitalizeFirstLetter }}</td>
+
+          <td>
+            <div class="delBtn">
+              <button
+                type="button"
+                class="btn btn-danger delBtn"
+                (click)="deleteUserFromGroup(member.emailId)"
+              >
+                Delete
+              </button>
+            </div>
+          </td>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div
+  class="modal fade"
+  id="staticBackdrop2"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <!-- <div class="container col-sm-6">
+    <div
+      *ngIf="alert"
+      [class]="alertClass + ' alert-dismissible fade show'"
+      role="alert"
+    >
+      <strong
+        >{{ alertClass.includes("success") ? "Success!" : "Oops!" }}
+      </strong>
+      {{ successMessage || errorMessage }}.
+      <button
+        (click)="closeAlert()"
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+  </div> -->
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row text-center">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Member</h1>
+        </div>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="global-container">
+            <div class="card login-form">
+              <div class="card-body">
+                <div class="card-text">
+                  <form [formGroup]="AddmemberForm" (ngSubmit)="addMember()">
+                    <div class="mb-3">
+                      <label class="form-label">Email Id</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        formControlName="EmailId"
+                      />
+                    </div>
+                    <div class="buttons">
+                      <button
+                        type="submit"
+                        class="btn btn-outline-success me-1"
+                      >
+                        Add
+                      </button>
+
+                      <!-- <div class="create-group-btn">
+                        <a
+                          routerLink="/group/members/{{ id }}"
+                          class="btn btn-danger"
+                          >Back</a
+                        >
+                      </div> -->
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

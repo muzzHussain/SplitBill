@@ -1,0 +1,55 @@
+
+html,
+body {
+  height: 100%;
+}
+
+.global-container {
+  height: 100%;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert {
+  margin-bottom: 0;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+form {
+  padding-top: 10px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.card-title {
+  font-weight: 300;
+  letter-spacing: 5px;
+}
+
+.btn {
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.login-form {
+  width: 330px;
+}
+
+.sign-up {
+  text-align: center;
+  padding: 20px 0 0;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.line {
+  border-top: 1px solid rgba(30, 28, 28, 0.205);
+}

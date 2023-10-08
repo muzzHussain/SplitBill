@@ -1,0 +1,79 @@
+<div class="container col-sm-6">
+  <div
+    *ngIf="alert"
+    [class]="alertClass + ' alert-dismissible fade show'"
+    role="alert"
+  >
+    <strong
+      >{{ alertClass.includes("success") ? "Success!" : "Oops!" }}
+    </strong>
+    {{ successMessage || errorMessage }}.
+    <button
+      (click)="closeAlert()"
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="welcome-msg">
+        <h1>
+          Welcome
+          <h3>
+            to the Split Bill App,
+            <span class="fw-bold">{{ userName | capitalizeFirstLetter }}</span>
+          </h3>
+        </h1>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="create-group-btn">
+        <a routerLink="/create/group" class="btn btn-outline-success"
+          >Create Group</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="line"></div>
+  <table class="table my-3">
+    <thead>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let group of groupDetails">
+        <div class="group-title">
+          <a routerLink="/group/members/{{ group.id }}">
+            <td>{{ group.title }}</td>
+          </a>
+        </div>
+        <th>
+          <button
+            type="button"
+            class="btn btn-danger delBtn"
+            (click)="onDelete(group.id)"
+          >
+            Delete
+          </button>
+          &nbsp;
+          <button
+            type="button"
+            class="btn btn-outline-danger delBtn me-3"
+            (click)="onLeaveGroup(group.id)"
+          >
+            Leave Group
+          </button>
+        </th>
+        <!-- TODO: Add edit and delete functionality -->
+      </tr>
+    </tbody>
+  </table>
+  <p class="msg text-body-secondary" *ngIf="groupDetails.length === 0">
+    No Group Found!
+  </p>
+</div>

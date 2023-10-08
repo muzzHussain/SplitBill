@@ -1,0 +1,161 @@
+<div class="container col-sm-6">
+  <div
+    *ngIf="alert"
+    [class]="alertClass + ' alert-dismissible fade show'"
+    role="alert"
+  >
+    <strong
+      >{{ alertClass.includes("success") ? "Success!" : "Oops!" }}
+    </strong>
+    {{ successMessage || errorMessage }}.
+    <button
+      (click)="closeAlert()"
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="welcome-msg"></div>
+    </div>
+    <div class="col-sm-6">
+      <div class="groupBtns">
+        <a
+          id="back"
+          routerLink="/group/expense/{{ groupId }}"
+          class="btn btn-dark"
+          >Back</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="line"></div>
+  <table class="table my-3">
+    <thead>
+      <th>Users</th>
+      <th>Spend Amount</th>
+      <th>Per Person</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of contribution" [class]="textColor">
+        <td>{{ item.userName | capitalizeFirstLetter }}</td>
+        <td>Rs. {{ item.spendAmount }}</td>
+        <td>Rs. {{ item.perPerson | number : "1.2-2" }}</td>
+        <th class="btns">
+          <div class="actions-btns">
+            <button
+              type="button"
+              class="btn btn-outline-success"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop2"
+              *ngIf="isEligibleToPay(item)"
+            >
+              Pay Now
+            </button>
+          </div>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          Settlement
+        </button>
+      </h2>
+      <div
+        id="collapseOne"
+        class="accordion-collapse collapse show"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+          <div *ngFor="let item of settlementDTO">
+            <p class="text-body-secondary">
+              <span class="fw-bold fst-italic">{{ item.needToPay }}</span> needs
+              to pay
+              <span class="text-decoration-underline">{{
+                item.amount | number : "1.2-2"
+              }}</span>
+              to
+              <span class="fw-bold fst-italic">{{ item.whomToPay }}</span>
+            </p>
+          </div>
+          <p class="msg text-body-secondary" *ngIf="!noAmt">
+            No Amount to be paid
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="staticBackdrop2"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row text-center">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Settlement</h1>
+        </div>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="global-container">
+            <div class="row">
+              <div class="col-6">
+                <div class="card w-10">
+                  <div class="card-body">
+                    <h5 class="card-title">Muzammil</h5>
+                    <p class="card-text text-secondary">
+                      upi:
+                      <span
+                        >8920273279@paytm
+                        <i class="fa fa-clone" aria-hidden="true"></i
+                      ></span>
+                    </p>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="generateQR()"
+                    >
+                      Generate QR
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="vr-line"></div>
+              <div class="col-5">
+                <div class="qr-code"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+.bg-light {
+  box-shadow: 5px -1px 11px 0px;
+}
+
+.navbar {
+  background-color: rgba(2, 1, 1, 0.854);
+  opacity: 0.8;
+  box-shadow: 4px 0px 20px;
+  opacity: 0.9;
+}
+
+.navbar-brand {
+  color: rgba(255, 253, 253, 0.998);
+  text-shadow: 1px 1px 5px grey;
+  letter-spacing: 5px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .nav-item {
+    margin-bottom: 10px;
+  }
+}

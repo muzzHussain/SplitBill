@@ -1,0 +1,54 @@
+.create-group-btn {
+  display: flex;
+  justify-content: end;
+}
+
+table a {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+}
+.group-title {
+  border-bottom: 1px solid rgba(30, 28, 28, 0.205);
+}
+
+.msg {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.welcome-msg span {
+  letter-spacing: 1.5px;
+  color: rebeccapurple;
+  text-decoration-line: underline;
+}
+
+.line {
+  margin-top: 10px;
+  border: 1px solid rgba(30, 28, 28, 0.205);
+  box-shadow: 0px 1px 7px black;
+}
+
+td {
+  letter-spacing: 2px;
+  font-weight: 500;
+  /* width: 100%; */
+}
+
+.fa {
+  font-size: 20px;
+}
+
+.fa-pencil-square-o {
+  color: green;
+}
+
+.fa-trash-o {
+  color: red;
+}
+
+.delBtn {
+  float: right;
+}

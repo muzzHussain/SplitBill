@@ -1,0 +1,81 @@
+<div class="container col-sm-6">
+  <div
+    *ngIf="alert"
+    [class]="alertClass + ' alert-dismissible fade show'"
+    role="alert"
+  >
+    <strong
+      >{{ alertClass.includes("success") ? "Success!" : "Oops!" }}
+    </strong>
+    {{ successMessage || errorMessage }}.
+    <button
+      (click)="closeAlert()"
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+</div>
+
+<div class="global-container">
+  <div class="card login-form">
+    <div class="card-body">
+      <h3 class="card-title text-center">Register</h3>
+      <div class="line"></div>
+      <div class="card-text">
+        <form [formGroup]="registerForm" (ngSubmit)="onUserRegister()">
+          <div class="mb-3">
+            <label class="form-label">User Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="userName"
+            />
+            <small
+              *ngIf="getUserName?.invalid && getUserName?.touched"
+              class="text-danger fw-bold"
+              >*User name is Required</small
+            >
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" formControlName="email" />
+            <small
+              *ngIf="getEmail?.invalid && getEmail?.touched"
+              class="text-danger fw-bold"
+              >*Email is Required</small
+            >
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+            />
+            <small
+              *ngIf="getPassword?.invalid && getPassword?.touched"
+              class="text-danger fw-bold"
+              >*Password is Required</small
+            >
+          </div>
+          <div class="buttons">
+            <button
+              [disabled]="userLogin"
+              type="submit"
+              class="btn btn-outline-success me-1"
+            >
+              <span
+                *ngIf="userLogin"
+                class="spinner-border spinner-border-sm mr-1"
+              ></span>
+              Register
+            </button>
+            <a class="btn btn-secondary" routerLink="">Back</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
