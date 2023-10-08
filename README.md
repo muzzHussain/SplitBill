@@ -1,10 +1,10 @@
 splitbills is a backend folder
 splitbillsfrontend-angular/splitBillFrontEnd is a frontend folder
 
-##To Run this application
+## To Run this application
 
-#Frontend
+# Frontend
 Run 'npm i' it will install all required node modules 
 
-#Backend
+# Backend
 Directly run on IIS Server
