@@ -1,5 +1,6 @@
-splitbills is a backend folder
-splitbillsfrontend-angular/splitBillFrontEnd is a frontend folder
+## splitbills is a backend folder
+
+## splitbillsfrontend-angular/splitBillFrontEnd is a frontend folder
 
 ## To Run this application
 
